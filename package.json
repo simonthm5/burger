@@ -1,0 +1,29 @@
+{
+  "name": "burger",
+  "version": "1.0.0",
+  "description": "a simple burger app",
+  "main": "index.js",
+  "scripts": {
+    "test": "n/a"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonthm5/burger.git"
+  },
+  "keywords": [
+    "burger",
+    "handlebars"
+  ],
+  "author": "Tom Simon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simonthm5/burger/issues"
+  },
+  "homepage": "https://github.com/simonthm5/burger#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {}
+}
