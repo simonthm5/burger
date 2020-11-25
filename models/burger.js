@@ -1,11 +1,7 @@
-var orm = requie("../config/orm.js");
+var orm = require("../config/orm.js");
 
-var burgerfunction = {
-    selectAll: function(callback){
-        orm.selectAll("burgers", function(data){
-            callback(data);
-        });
-    },
+var burger = {
+
     insertOne: function(callback){
         orm.insertOne("burgers", function(data){
             callback(data);
@@ -15,7 +11,14 @@ var burgerfunction = {
         orm.updateOne("burgers", function(data){
             callback(data);
         });
+    },
+    selectAll: (callback) => {
+        orm.selectAll("burgers", (data) => {
+            callback(data)
+        })
+
     }
+
 };
 
-module.exports = burgerfunction;
+module.exports = burger;
