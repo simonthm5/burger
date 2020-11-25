@@ -1,0 +1,54 @@
+<div class="container">
+
+
+
+
+    <div>
+        <h1> Burger Tracker</h1>
+    </div>
+
+
+    <div class="row">
+
+        <div>
+            <h3> Eat. </h3>
+            <ul>
+                {{#each burgers}}
+                {{#unless devoured}}
+                {{> burgers/burger-block devoured=false}}
+                {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+
+        <div>
+            <h3> Ate. </h3>
+            <ul>
+                {{#each burgers}}
+                {{#if devoured}}
+                {{> burgers/burger-block devoured=true}}
+                {{/if}}
+                {{/each}}
+            </ul>
+
+            <div>
+                <hr>
+                <form class="create-form">
+                    <div class="form-group">
+                        <h2 class="heading"><label for="burg"> Add. !</label></h2>
+                        <br>
+                        <input type="text" id="burg" name="name">
+                    </div>
+                    <button class="btn btn-dark btn-lg" type="submit">
+                        Submit
+                    </button>
+
+                </form>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
