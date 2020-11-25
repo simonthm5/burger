@@ -1,5 +1,6 @@
-// declare connection here to be define later
+//connects mySQL to node
 
+// declare connection here to be define later
 var connection;
 
 // requirements
