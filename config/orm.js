@@ -1,33 +1,47 @@
-///object relationship mapper
+const connection = require("./connection.js");
 
-var connection = require("../config/connection.js");
+const orm = {
 
-var orm = {
+    // selectAll method
+    selectAll: (tableInput, callback) => {
 
-    selectAll: function(tableInput, cb) {
-        var queryString = "SELECT * FROM " + tableInput + ";";
-        connection.query(queryString, function(err, result) {
-          if (err) {
-            throw err;
-          }
-          cb(result);
+        // SQL query string - Return all records
+        const queryString = "SELECT * FROM ??";
+
+        // Query String
+        connection.query(queryString, [tableInput], (err, result) => {
+            if (err) throw err;
+            callback(result);
         });
     },
-    insertOne: (input, oneI, twoI, oneV, twoV, cb) => {
-        var queryString = "INSERT INTO ?? (??,??) VALUES (?,?)";
-        connection.query(queryString, [input, oneI, twoI, oneV, twoV], 
-            (err, data) => {
-                if (err) throw err;
-                cb(data);
-            });
-    },
-    updateOne: (input, set, val, where, whereval, cb) => {
-        var queryString = "UPDATE ?? SET ?? = ?";
-        connection.query(queryString, [input, set, val, where, whereval], (err, data) => {
-            if(err) throw err;
-            cb(data)
-        })
-    }
-}
 
+    // insertOne method
+    insertOne: (tableInput, colOneInput, colTwoInput, colOneValue, colTwoValue, callback) => {
+
+        // SQL query string - Insert record
+        const queryString = "INSERT INTO ?? (??, ??) VALUES (?, ?)";
+
+        // Query String
+        connection.query(queryString, [tableInput, colOneInput, colTwoInput, colOneValue, colTwoValue], (err, result) => {
+            if (err) throw err;
+            callback(result);
+        });
+    },
+
+    // UpdateOne method
+    updateOne: (tableInput, setCol, setColVal, whereCol, whereColVal, callback) => {
+
+        // SQL query string - Update record
+        const queryString = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
+
+        // Query String
+        connection.query(queryString, [tableInput, setCol, setColVal, whereCol, whereColVal], (err, result) => {
+            if (err) throw err;
+            callback(result);
+        });
+    },
+
+};
+
+// Export orm for burger.js model to use.
 module.exports = orm;
