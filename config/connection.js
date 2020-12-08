@@ -1,32 +1,29 @@
-//connects mySQL to node
+// Set up MySQL connection.
+const mysql = require("mysql");
+let connection;
 
-// declare connection here to be define later
-var connection;
+// Connection to JAWSDB for Heroku
+if (process.env.JAWSDB_URL){
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "hwkshdwm",
+    database: "burgers_db"
+  });
 
-// requirements
-var mysql = require("mysql");
+}
 
-// defer to Heroku db first  using if else
-if (process.env.JAWSDB_URL) {
-    connection = mysql.createConnection(process.env.JAWSDB_URL);}
-    else{
-        connection = mysql.createConnection(
-            {
-                host:'localhost',
-                port: 3306,
-                user: "root",
-                password: "hwkshdwm",
-                database: "burgers_db"
-            });}
-connection.connect(function(err){
-    if (err) {
-        console.error("connection error: " + err.stack);
-        return;
-    }
-console.log(connection.threadId + " is now active id");});
+// Make connection.
+connection.connect(function(err) {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+    return;
+  }
+  console.log("connected as id " + connection.threadId);
+});
 
-var notConnected = ["not connected"];
-var nowRunning = ["now running"];
-
-//export the connection
+// Export connection for our ORM to use.
 module.exports = connection;
