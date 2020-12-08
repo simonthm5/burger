@@ -4,13 +4,15 @@ var connection = require("../config/connection.js");
 
 var orm = {
 
-    selectAll: (input,cb) => {
-        var queryString = "SELECT * FROM " + input + ";"
-        connection.query(queryString, [input], (err, data) => {
-            if (err) throw err;
-            cb(data);
+    selectAll: function(tableInput, cb) {
+        var queryString = "SELECT * FROM " + tableInput + ";";
+        connection.query(queryString, function(err, result) {
+          if (err) {
+            throw err;
+          }
+          cb(result);
         });
-    },  
+    },
     insertOne: (input, oneI, twoI, oneV, twoV, cb) => {
         var queryString = "INSERT INTO ?? (??,??) VALUES (?,?)";
         connection.query(queryString, [input, oneI, twoI, oneV, twoV], 
